@@ -1,16 +1,16 @@
-Cat = {
-	count: 0,
-	name: "",
-	src: "",
-	DOM: null,
-	displayStatus: false,
+Cat = function(){
+	this.count	= 0;
+	this.name = "";
+	this.src = "";
+	this.DOM = null;
 
-	init: function(name, src){
+	this.init = function(name, src){
 		this.name   = name;
 		this.src 	= src;
 		this.DOM	= $('#cat-template').clone().removeAttr('id');
-	},
-	render: function(),
+	}
+
+	this.render = function(){
 		$(this.DOM).find('h3').text(this.name);
 		var catRef = this;
 		$(this.DOM).find('img').attr('src', this.src).click(function(){
@@ -20,11 +20,15 @@ Cat = {
 
 		$(this.DOM).appendTo('#five-cats');
 		$(this.DOM).show();
-	},
-	countUp: function(){
+	}
+
+	this.countUp = function(){
 		this.count++;
-	},
-	toggle: function(),
+	}
+
+	this.DOM	= null;
+	this.displayStatus = false;
+	this.toggle = function(){
 		console.log('hi')
 		if(this.displayStatus == false){
 			this.render();
@@ -39,7 +43,6 @@ Cat = {
 
 Cats = {
 	catList: [],
-	
 	initCats: function(){
 		var photoCat = new Cat();
 		photoCat.init('Kitten (Real)', 'assets/kitten.png');
