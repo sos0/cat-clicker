@@ -1,12 +1,21 @@
 .center-div{
 	position: absolute;
 	margin: auto;
-	top: 0;
-	right: 0;
-	bottom: 0;
+	top: 25%;
 	left: 0;
 	width: 100%;
 	height: 500px;
+}
+
+.list-container{
+	width: 50%;
+	margin: 0 auto;
+	margin-top: -50px;
+	padding-bottom: 50px;
+}
+
+.ui.five.buttons>.button{
+	padding: 20px 0;
 }
 
 #two-cats{
@@ -18,8 +27,23 @@
 	text-align: center;
 }
 
+h3{
+	text-align: center;
+	font-variant: small-caps;
+}
+
 .image{
-	height: 300px;
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+img{
+	margin: 0 auto;
+	max-width: 200px;
+	max-height: 200px;
+	height: auto;
 }
 
 .caption{
