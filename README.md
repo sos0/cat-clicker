@@ -1,2 +1,2 @@
 # cat-clicker
-step 1 of udacity JS tutorial
+cat-clicker was created via udacity's js design patterns class.

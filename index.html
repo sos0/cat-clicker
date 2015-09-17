@@ -10,8 +10,16 @@
 </head>
 <body>
   <div class="center-div">
-    <div><img id="clickable" src="kitten.png"></div>
-    <div><p id="caption"><span id="count">0</span> clicks!</p></div>
+    <div class="ui two column centered grid" id="two-cats">
+      <div class="column"></div>
+      <div class="column"></div>
+    </div>
+
+    <div id="cat-template" style="display:none">
+      <h3 class="ui header"></h3>
+      <div class="image"><img></div>
+      <div class="caption"><p><span class="count">0</span> clicks!</p></div>
+    </div>
   </div>
 
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
