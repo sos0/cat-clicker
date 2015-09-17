@@ -17,7 +17,7 @@ Cat = function(){
 			catRef.countUp();
 			$(catRef.DOM).find('.count').text(catRef.count);
 		});
-		
+
 		$(this.DOM).appendTo('#five-cats');
 		$(this.DOM).show();
 	}
@@ -29,6 +29,7 @@ Cat = function(){
 	this.DOM	= null;
 	this.displayStatus = false;
 	this.toggle = function(){
+		console.log('hi')
 		if(this.displayStatus == false){
 			this.render();
 			this.displayStatus = true;
@@ -62,19 +63,29 @@ Cats = {
 		var meMowCat  = new Cat();
 		meMowCat.init('MeMow', 'assets/MeMow.png');
 		this.catList.push(meMowCat);
+	},
+	initButtonList: function(){
+		for(var i in this.catList){
+			var cat = this.catList[i];
+			renderButton(cat);
+			
+			function renderButton(cat){
+				var $button = $('<button/>', {
+					text: cat.name,
+					'class': 'ui toggle button',
+					click: function(){
+						cat.toggle();
+						if(cat.displayStatus){
+							$(this).addClass('active');
+						}else{
+							$(this).removeClass('active');
+						}
+					}
+				}).appendTo('.list-container > .buttons');
+			}
+		}
 	}
 }
 
 Cats.initCats();
-
-$('.list-container > .buttons').children().each(function(i){
-	var cat = Cats.catList[i];
-	$(this).click(function(){
-		cat.toggle();
-		if(cat.displayStatus){
-			$(this).addClass('active');
-		}else{
-			$(this).removeClass('active');
-		}
-	})
-})
+Cats.initButtonList();
