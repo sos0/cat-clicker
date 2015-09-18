@@ -23,13 +23,13 @@ Cat = function(){
 			$(catRef.catDOM).find('.count').text(catRef.count);
 		});
 
-		this.renderAdmin();
-		$(this.adminDOM).find('.admin-cancel').click(function(){
-			catRef.renderAdmin();
-		});
-		$(this.adminDOM).find('.admin-save').click(function(){
-			catRef.update();
-		});
+		// this.renderAdmin();
+		// $(this.adminDOM).find('.admin-cancel').click(function(){
+		// 	catRef.renderAdmin();
+		// });
+		// $(this.adminDOM).find('.admin-save').click(function(){
+		// 	catRef.update();
+		// });
 
 		$(this.catDOM).appendTo('#five-cats');
 		$(this.catDOM).show();
@@ -121,10 +121,10 @@ Cats = {
 Cats.initCats();
 Cats.initButtonList();
 
-$('#admin').on('change', function(){
-	if($(this).checkbox('is checked')){
-		$('.admin-panel').show();
-	}else{
-		$('.admin-panel').hide();
-	}
-})
+// $('#admin').on('change', function(){
+// 	if($(this).checkbox('is checked')){
+// 		$('.admin-panel').show();
+// 	}else{
+// 		$('.admin-panel').hide();
+// 	}
+// })
