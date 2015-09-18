@@ -1,21 +1,22 @@
 Cat = function(name, src){
-	this.count	= 0;
+	this.count = 0;
 	this.name = name;
 	this.src = src;
 	this.catDOM = $('#cat-template').clone().removeAttr('id').appendTo('#five-cats');
 	this.adminDOM = $(this.catDOM).find('.admin-panel');
 	this.buttonDOM = null;
 	this.displayStatus = false;
+	
+	var catRef = this;
+	$(this.catDOM).find('img').attr('src', this.src).click(function(){
+		catRef.countUp();
+		$(catRef.catDOM).find('.count').text(catRef.count);
+	});
+
 
 	this.render = function(){
 		$(this.catDOM).find('h3').text(this.name);
 		$(this.catDOM).find('.count').text(this.count);
-		var catRef = this;
-		$(this.catDOM).find('img').attr('src', this.src).click(function(){
-			catRef.countUp();
-			$(catRef.catDOM).find('.count').text(catRef.count);
-		});
-
 		// this.renderAdmin();
 		// $(this.adminDOM).find('.admin-cancel').click(function(){
 		// 	catRef.renderAdmin();
