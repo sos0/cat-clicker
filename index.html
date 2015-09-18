@@ -11,6 +11,12 @@
 <body>
   <div class="center-div">
     <div class="list-container">
+      <div class="admin-settings">
+        <div class="ui toggle checkbox" id="admin">
+          <input type="checkbox" name="admin">
+          <label>Admin</label>
+        </div>
+      </div>
       <div class="five ui buttons">
       </div>
     </div>
@@ -18,10 +24,25 @@
     <div class="ui five column centered grid" id="five-cats">
     </div>
 
-    <div id="cat-template" style="display:none">
+    <div class="column" id="cat-template" style="display:none">
       <h3 class="ui header"></h3>
       <div class="image"><img></div>
       <div class="caption"><p><span class="count">0</span> clicks!</p></div>
+      <div class="ui form admin-panel" style="display:none">
+        <div class="field">
+          <input type="text" name="name" placeholder="Cat Name">
+        </div>
+        <div class="field">
+          <input type="text" name="src" placeholder="Cat Img URL">
+        </div>
+        <div class="field">
+          <input type="number" name="count" placeholder="Cat Count">
+        </div>
+        <div>
+          <button class="ui button admin-cancel">Discard</button>
+          <button class="ui primary button admin-save">Save</button>
+        </div>
+      </div>
     </div>
   </div>
 

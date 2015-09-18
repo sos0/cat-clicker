@@ -2,41 +2,71 @@ Cat = function(){
 	this.count	= 0;
 	this.name = "";
 	this.src = "";
-	this.DOM = null;
+	this.catDOM = null;
+	this.buttonDOM = null;
+	this.adminDOM = null;
+	this.displayStatus = false;
 
 	this.init = function(name, src){
 		this.name   = name;
 		this.src 	= src;
-		this.DOM	= $('#cat-template').clone().removeAttr('id');
+		this.catDOM	= $('#cat-template').clone().removeAttr('id');
+		this.adminDOM = $(this.catDOM).find('.admin-panel');
 	}
 
 	this.render = function(){
-		$(this.DOM).find('h3').text(this.name);
+		$(this.catDOM).find('h3').text(this.name);
+		$(this.catDOM).find('.count').text(this.count);
 		var catRef = this;
-		$(this.DOM).find('img').attr('src', this.src).click(function(){
+		$(this.catDOM).find('img').attr('src', this.src).click(function(){
 			catRef.countUp();
-			$(catRef.DOM).find('.count').text(catRef.count);
+			$(catRef.catDOM).find('.count').text(catRef.count);
 		});
 
-		$(this.DOM).appendTo('#five-cats');
-		$(this.DOM).show();
+		this.renderAdmin();
+		$(this.adminDOM).find('.admin-cancel').click(function(){
+			catRef.renderAdmin();
+		});
+		$(this.adminDOM).find('.admin-save').click(function(){
+			catRef.update();
+		});
+
+		$(this.catDOM).appendTo('#five-cats');
+		$(this.catDOM).show();
 	}
 
 	this.countUp = function(){
 		this.count++;
+		$(this.adminDOM).find('input[name="count"]').val(this.count);
 	}
 
-	this.DOM	= null;
-	this.displayStatus = false;
 	this.toggle = function(){
-		console.log('hi')
 		if(this.displayStatus == false){
 			this.render();
+			this.renderAdmin();
 			this.displayStatus = true;
 		}
 		else{
-			$(this.DOM).remove();
+			$(this.catDOM).remove();
 			this.displayStatus = false;
+		}
+	}
+
+	this.update = function(){
+		this.name = $(this.adminDOM).find('input[name="name"]').val();
+		this.src = $(this.adminDOM).find('input[name="src"]').val();
+		this.count = $(this.adminDOM).find('input[name="count"]').val();
+
+		this.render();
+		$(this.buttonDOM).text(this.name);
+	}
+
+	this.renderAdmin = function(){
+		$(this.adminDOM).find('input[name="name"]').val(this.name);
+		$(this.adminDOM).find('input[name="src"]').val(this.src);
+		$(this.adminDOM).find('input[name="count"]').val(this.count);
+		if($('#admin').checkbox('is checked')){
+			$(this.adminDOM).show();
 		}
 	}
 }
@@ -67,9 +97,9 @@ Cats = {
 	initButtonList: function(){
 		for(var i in this.catList){
 			var cat = this.catList[i];
-			renderButton(cat);
+			initButton(cat);
 			
-			function renderButton(cat){
+			function initButton(cat){
 				var $button = $('<button/>', {
 					text: cat.name,
 					'class': 'ui toggle button',
@@ -82,6 +112,7 @@ Cats = {
 						}
 					}
 				}).appendTo('.list-container > .buttons');
+				cat.buttonDOM = $button;
 			}
 		}
 	}
@@ -89,3 +120,11 @@ Cats = {
 
 Cats.initCats();
 Cats.initButtonList();
+
+$('#admin').on('change', function(){
+	if($(this).checkbox('is checked')){
+		$('.admin-panel').show();
+	}else{
+		$('.admin-panel').hide();
+	}
+})
