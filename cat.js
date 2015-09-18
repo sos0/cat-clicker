@@ -12,6 +12,7 @@ Cat = function(){
 		this.src 	= src;
 		this.catDOM	= $('#cat-template').clone().removeAttr('id');
 		this.adminDOM = $(this.catDOM).find('.admin-panel');
+		$(this.catDOM).appendTo('#five-cats');
 	}
 
 	this.render = function(){
@@ -31,7 +32,6 @@ Cat = function(){
 		// 	catRef.update();
 		// });
 
-		$(this.catDOM).appendTo('#five-cats');
 		$(this.catDOM).show();
 	}
 
@@ -47,7 +47,7 @@ Cat = function(){
 			this.displayStatus = true;
 		}
 		else{
-			$(this.catDOM).remove();
+			$(this.catDOM).hide();
 			this.displayStatus = false;
 		}
 	}
