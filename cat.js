@@ -13,6 +13,7 @@ Cat = function(){
 		this.catDOM	= $('#cat-template').clone().removeAttr('id');
 		this.adminDOM = $(this.catDOM).find('.admin-panel');
 		$(this.catDOM).appendTo('#five-cats');
+		this.render();
 	}
 
 	this.render = function(){
@@ -32,7 +33,7 @@ Cat = function(){
 		// 	catRef.update();
 		// });
 
-		$(this.catDOM).show();
+		// $(this.catDOM).show();
 	}
 
 	this.countUp = function(){
@@ -42,8 +43,9 @@ Cat = function(){
 
 	this.toggle = function(){
 		if(this.displayStatus == false){
-			this.render();
-			this.renderAdmin();
+			// this.render();
+			// this.renderAdmin();
+			$(this.catDOM).show();
 			this.displayStatus = true;
 		}
 		else{
