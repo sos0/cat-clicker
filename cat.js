@@ -1,20 +1,11 @@
-Cat = function(){
+Cat = function(name, src){
 	this.count	= 0;
-	this.name = "";
-	this.src = "";
-	this.catDOM = null;
+	this.name = name;
+	this.src = src;
+	this.catDOM = $('#cat-template').clone().removeAttr('id').appendTo('#five-cats');
+	this.adminDOM = $(this.catDOM).find('.admin-panel');
 	this.buttonDOM = null;
-	this.adminDOM = null;
 	this.displayStatus = false;
-
-	this.init = function(name, src){
-		this.name   = name;
-		this.src 	= src;
-		this.catDOM	= $('#cat-template').clone().removeAttr('id');
-		this.adminDOM = $(this.catDOM).find('.admin-panel');
-		$(this.catDOM).appendTo('#five-cats');
-		this.render();
-	}
 
 	this.render = function(){
 		$(this.catDOM).find('h3').text(this.name);
@@ -32,8 +23,6 @@ Cat = function(){
 		// $(this.adminDOM).find('.admin-save').click(function(){
 		// 	catRef.update();
 		// });
-
-		// $(this.catDOM).show();
 	}
 
 	this.countUp = function(){
@@ -43,7 +32,6 @@ Cat = function(){
 
 	this.toggle = function(){
 		if(this.displayStatus == false){
-			// this.render();
 			// this.renderAdmin();
 			$(this.catDOM).show();
 			this.displayStatus = true;
@@ -76,24 +64,24 @@ Cat = function(){
 Cats = {
 	catList: [],
 	initCats: function(){
-		var photoCat = new Cat();
-		photoCat.init('Kitten (Real)', 'assets/kitten.png');
+		var photoCat = new Cat('Kitten (Real)', 'assets/kitten.png');
+		photoCat.render();
 		this.catList.push(photoCat);
 
-		var kittenCat  = new Cat();
-		kittenCat.init('Kitten', 'assets/kitten2.png');
+		var kittenCat  = new Cat('Kitten', 'assets/kitten2.png');
+		kittenCat.render();
 		this.catList.push(kittenCat);
 
-		var boxPrinceCat  = new Cat();
-		boxPrinceCat.init('Box Prince', 'assets/BoxPrince.png');
+		var boxPrinceCat  = new Cat('Box Prince', 'assets/BoxPrince.png');
+		boxPrinceCat.render();
 		this.catList.push(boxPrinceCat);
 
-		var cakeCat  = new Cat();
-		cakeCat.init('Cake', 'assets/Cake_001.png');
+		var cakeCat  = new Cat('Cake', 'assets/Cake_001.png');
+		cakeCat.render();
 		this.catList.push(cakeCat);
 
-		var meMowCat  = new Cat();
-		meMowCat.init('MeMow', 'assets/MeMow.png');
+		var meMowCat  = new Cat('MeMow', 'assets/MeMow.png');
+		meMowCat.render();
 		this.catList.push(meMowCat);
 	},
 	initButtonList: function(){
